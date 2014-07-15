@@ -52,7 +52,12 @@ func allOnes(input:Int, var currNum:Int = 1) -> Int{
 allOnes(9901)
 
 
+//최혁 Ones 코딩도장 풀이 
+//2나5로나눌수없는 0이상 10000이하의 정수 입력
+//10진수로 표시했을때, 모든 자리 숫자가 1인 숫자가 있다.
+//입력한 정수의 배수 중에서 가장 작은 것(111,1111,11111)은 몇자리 수 일까?
 
+//return value = String
 func fnOnes(input:Int)-> String{
     if( input < 0 || input > 10000){
         return "0이상 10000이하의정수만 가능합니다.";
@@ -60,16 +65,21 @@ func fnOnes(input:Int)-> String{
     if( input%2 == 0 || input%5 == 0){
         return ("2나 5로 나눌수 있는 수 입니다.");
     }
+    //아래 식으로 계산하여 나온결과가 입력한 값의 배수일때까지 loop
+    // 1 * 10 +1 = 11  
+    // 11 * 10 +1 = 111 
+    // 111 * 10 +1 = 1111 
     var val = 1;
     while (val % input != 0 ) {
-        val = val * 10+1;
-        if(val >= 1000000000000000000 ){
+        val = val * 10+1;   
+        if(val >= 1000000000000000000 ){ //너무 큰 수가 나올땐 Return
             return toString(val)
         }
     }
-    return "\(countElements(toString(val)))"
+    return "\(countElements(toString(val)))" //val 결과를 String으로 변환해서 문자 갯수를 반환
 }
 
+//아래 function을 실행해서 결과를 확인해보세요 :)
 //fnOnes(3);
 //fnOnes(7);
 fnOnes(9901);
